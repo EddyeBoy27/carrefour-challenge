@@ -3,12 +3,12 @@ import { AuthGuard } from '@nestjs/passport';
 import { AppService } from './app.service';
 
 @Controller()
-@UseGuards(AuthGuard())
+// @UseGuards(AuthGuard())
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async getHello(): Promise<string> {
+    return await this.appService.getHello();
   }
 }

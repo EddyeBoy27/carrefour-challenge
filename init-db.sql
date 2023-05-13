@@ -1,7 +1,12 @@
--- init-db.sql
-CREATE TABLE IF NOT EXISTS users (
+CREATE DATABASE cashflow;
+\c cashflow
+
+CREATE TABLE public.users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL
 );
+
+INSERT INTO users (name, email, password)
+VALUES ('Sr Fulano', 'fulano@example.com', 'senhafulano');

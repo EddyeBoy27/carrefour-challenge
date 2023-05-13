@@ -6,7 +6,7 @@ export class AppService {
   constructor(private readonly userService: UsersService) {}
 
   async getHello(): Promise<string> {
-    const users = await this.userService.findall();
+    const users = await this.userService.findAll();
     console.log(users);
     return 'Hello World!';
   }

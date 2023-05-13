@@ -1,14 +1,31 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import { User } from '../users/entity/user.entity';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly jwtService: JwtService) {}
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly userService: UsersService,
+  ) {}
 
-  async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
-    return {
-      access_token: this.jwtService.sign(payload),
-    };
+  async validateUser(email: string, password: string): Promise<any> {
+    const user = await this.userService.findOne(email);
+    const passValid = await bcrypt.compare(password, user.password);
+    if (user.email === email && passValid) {
+      return user;
+    }
+    return user;
+  }
+
+  async login(user: User): Promise<any> {
+    if (!user) {
+      throw new UnauthorizedException('Credenciais Inválidas.');
+    }
+
+    const payload = { userId: user.id, email: user.email };
+    return this.jwtService.sign(payload);
   }
 }

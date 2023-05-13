@@ -11,7 +11,9 @@ import { BalanceModule } from './balance/balance.module';
 import { AuthService } from './auth/auth.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
-import config from './config/typeorm.config';
+import { ConfigModule } from '@nestjs/config';
+import configuration from './config/configuration';
+import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
 
 @Module({
   imports: [
@@ -20,7 +22,8 @@ import config from './config/typeorm.config';
     CreditModule,
     BalanceModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    TypeOrmModule.forRoot(config),
+    TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
     UsersModule,
   ],
   controllers: [AppController],

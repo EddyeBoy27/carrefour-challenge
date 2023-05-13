@@ -1,4 +1,8 @@
-export default {
+export default () => ({
+  api: {
+    port: parseInt(process.env.API_PORT, 10),
+    secret: process.env.API_SECRET,
+  },
   mongodb: {
     host: process.env.MONGO_HOST,
     port: parseInt(process.env.MONGO_PORT, 10),
@@ -13,8 +17,4 @@ export default {
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DATABASE,
   },
-  api: {
-    port: parseInt(process.env.API_PORT, 10),
-    secret: process.env.API_SECRET,
-  },
-};
+});

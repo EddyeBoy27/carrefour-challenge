@@ -2,16 +2,16 @@ import { Module } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
-import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { BalanceModule } from './balance/balance.module';
 import { AuthService } from './auth/auth.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
 import { TransactionsModule } from './transactions/transactions.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -20,9 +20,24 @@ import { TransactionsModule } from './transactions/transactions.module';
     PassportModule.register({ defaultStrategy: 'jwt' }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: `mongodb://${configService.get<string>(
+          'mongodb.user',
+        )}:${configService.get<string>(
+          'mongodb.password',
+        )}@${configService.get<string>(
+          'mongodb.host',
+        )}:${configService.get<string>(
+          'mongodb.port',
+        )}/${configService.get<string>('mongodb.database')}`,
+      }),
+      inject: [ConfigService],
+    }),
     UsersModule,
     TransactionsModule,
   ],
-  providers: [AppService, JwtService, AuthService],
+  providers: [JwtService, AuthService],
 })
 export class AppModule {}

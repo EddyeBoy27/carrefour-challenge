@@ -19,3 +19,10 @@ CREATE TABLE public.transactions (
   description VARCHAR NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE public.balance (
+  id SERIAL PRIMARY KEY,
+  account_id INTEGER NOT NULL,
+  balance DECIMAL(10,2) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

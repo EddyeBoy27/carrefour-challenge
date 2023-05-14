@@ -10,9 +10,6 @@ export class TransactionsController {
 
   @Post()
   async createTransaction(@Body() body: CreateTransactionDto): Promise<any> {
-    const createTransaction = await this.transactionsService.createTransaction(
-      body,
-    );
-    console.log(createTransaction);
+    await this.transactionsService.createTransaction(body);
   }
 }

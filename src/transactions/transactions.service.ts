@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTransactionDto } from './dto/transactions.dto';
@@ -23,7 +23,7 @@ export class TransactionsService {
       );
       return savedTransaction;
     } catch (error) {
-      console.log(error);
+      throw new UnprocessableEntityException('Transação não concluída.');
     }
   }
 }

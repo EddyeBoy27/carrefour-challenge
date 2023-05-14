@@ -10,3 +10,12 @@ CREATE TABLE public.user (
 
 INSERT INTO public.user (name, email, password)
 VALUES ('Sr Fulano', 'fulano@example.com', '$2b$10$gXF.9piozcU7r6kDa0FAQevb4Vqoy7/bnKcR1gRuDEw8CFzIa0sze');
+
+CREATE TABLE public.transactions (
+  id SERIAL PRIMARY KEY,
+  account_id INTEGER NOT NULL,
+  type VARCHAR NOT NULL,
+  amount DECIMAL(10, 2) NOT NULL,
+  description VARCHAR NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

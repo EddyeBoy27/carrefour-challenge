@@ -12,6 +12,7 @@ import configuration from './config/configuration';
 import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
 import { TransactionsModule } from './transactions/transactions.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { KafkaModule } from './kafka/kafka.module';
 
 @Module({
   imports: [
@@ -24,19 +25,14 @@ import { MongooseModule } from '@nestjs/mongoose';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: `mongodb://${configService.get<string>(
-          'mongodb.user',
-        )}:${configService.get<string>(
-          'mongodb.password',
-        )}@${configService.get<string>(
           'mongodb.host',
-        )}:${configService.get<string>(
-          'mongodb.port',
-        )}/${configService.get<string>('mongodb.database')}`,
+        )}:${configService.get<string>('mongodb.port')}`,
       }),
       inject: [ConfigService],
     }),
     UsersModule,
     TransactionsModule,
+    KafkaModule,
   ],
   providers: [JwtService, AuthService],
 })

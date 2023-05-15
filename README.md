@@ -33,6 +33,12 @@ Banco de dados:
 
 ---
 
+# Desenho do Projeto:
+
+![Desenho do Projeto](Carrefour-Challenge-Diagram.jpg)
+
+---
+
 # Para iniciar o projeto é necessário obter o <strong>Docker</strong> na sua máquina, e para usá-lo é necessário o <strong>Postman</strong>
 
 - ### Faça o download do Docker no site oficial <a href="https://www.docker.com/get-started/" target="_blank">Docker</a>
@@ -65,7 +71,7 @@ $ docker-compose up --build
 
 # Documentação das Rotas:
 
-- ## Login (O usuário é criado na inicialização do banco, utilize este usuário):
+- ## Login (O usuário é criado na inicialização do banco, utilize o usuário do exemplo):
 
   - Método: POST
   - Body: {
@@ -123,23 +129,15 @@ $ docker-compose up --build
     "error": "Unauthorized"
     }
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+---
 
-# production mode
-$ npm run start:prod
-```
+# Cobertura de Testes em Todos os Serviços
 
-## Test
+![Cobertura de testes](cobertura-testes.jpeg)
 
 ```bash
-# unit tests
-$ npm run test
-
 # test coverage
 $ npm run test:cov
 ```

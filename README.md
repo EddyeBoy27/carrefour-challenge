@@ -5,7 +5,7 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-## Description
+## Descrição
 
 Seja bem vindo ao repositório do Projeto de <b>Fluxo de Caixa</b> para o desafio técnico da vaga de Desenvolvedor Backend Senior no Carrefour.
 
@@ -33,13 +33,15 @@ Banco de dados:
 
 ---
 
-# Para iniciar o projeto é necessário obter o <strong>Docker</strong> na sua máquina, e para testá-lo é necessário o Postman
+# Para iniciar o projeto é necessário obter o <strong>Docker</strong> na sua máquina, e para usá-lo é necessário o <strong>Postman</strong>
 
-- ### Faça o download do Docker no site oficial <a src="https://www.docker.com/get-started/">Docker</a>
+- ### Faça o download do Docker no site oficial <a href="https://www.docker.com/get-started/" target="_blank">Docker</a>
 
-- ### Faça o download do Postman no site oficial <a src="https://www.postman.com/downloads/">Postman</a>
+- ### Faça o download do Postman no site oficial <a href="https://www.postman.com/downloads/" target="_blank">Postman</a>
 
-## Instalação
+---
+
+# Instalação
 
 ### Toda a instalação de bibliotecas, node, banco de dados, etc, será orquestrado pelo docker, basta utilizar o terminal ou shell e navegar até a pasta do repositório clonado do projeto e produzir o seguinte comando:
 
@@ -47,7 +49,79 @@ Banco de dados:
 $ docker-compose up --build
 ```
 
-## Para te
+## Teste de Rotas
+
+### Para testar as rotas, basta importar o arquivo Carrefour-Challenge.postman_collection.json no Postman, lá haverá as seguintes rotas:
+
+- Login
+
+- CreateTransaction
+
+- GetBalance
+
+### Rotas previamente configuradas, atente-se apenas obter o token na rota de Login e enviá-lo nas requisições de criação e obtenção do saldo consolidado.
+
+---
+
+# Documentação das Rotas:
+
+- ## Login (O usuário é criado na inicialização do banco, utilize este usuário):
+
+  - Método: POST
+  - Body: {
+    "email": "fulano@example.com",
+    "password": "senhafulano" }
+
+  - Response (200): {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e..."}
+  - Response (401): {
+    "statusCode": 401,
+    "message": "Credenciais Inválidas.",
+    "error": "Unauthorized"
+    }
+
+- ## CreateTransaction:
+
+  - Método: POST
+  - Body: {"accountId: number, "type": "crédito" || "débito", "amount": number, "description": "string"}
+
+  - Response (201): Created
+  - Response (401): {
+    "statusCode": 401,
+    "message": "Credenciais Inválidas.",
+    "error": "Unauthorized"
+    }
+  - Response (400): {
+    "statusCode": 400,
+    "message": [
+    "Erro na requisição"
+    ],
+    "error": "Bad Request"
+    }
+
+- ## GetBalance:
+
+  - Método: GET
+  - Body: {"accountId": number, "date": "DD/MM/YYYY"}
+
+  - Response (200): {
+    "accountId": 100,
+    "date": "2023-05-15T00:00:00.000Z",
+    "amount": 801.05
+    }
+
+  - Response (400): {
+    "statusCode": 400,
+    "message": [
+    "Erro na Requisição"
+    ],
+    "error": "Bad Request"
+    }
+
+  - Response (401): {
+    "statusCode": 401,
+    "message": "Credenciais Inválidas.",
+    "error": "Unauthorized"
+    }
 
 ```bash
 # development

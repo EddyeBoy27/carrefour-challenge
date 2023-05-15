@@ -25,6 +25,10 @@ import { KafkaModule } from './kafka/kafka.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: `mongodb://${configService.get<string>(
+          'mongodb.user',
+        )}:${configService.get<string>(
+          'mongodb.password',
+        )}@${configService.get<string>(
           'mongodb.host',
         )}:${configService.get<string>('mongodb.port')}`,
       }),

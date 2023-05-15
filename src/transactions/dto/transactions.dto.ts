@@ -1,4 +1,5 @@
-import { IsEnum, IsNumber, IsString, Validate } from 'class-validator';
+import { Exclude, Transform } from 'class-transformer';
+import { IsDate, IsEnum, IsNumber, IsString, Validate } from 'class-validator';
 import { TransactionType } from '../enum/transaction.enum';
 
 function IsDecimalWithMinimumDigits(minimumDigits: number) {
@@ -21,4 +22,8 @@ export class CreateTransactionDto {
 
   @IsString()
   description: string;
+
+  @Transform(() => undefined)
+  @Exclude()
+  createdAt?: Date = new Date();
 }

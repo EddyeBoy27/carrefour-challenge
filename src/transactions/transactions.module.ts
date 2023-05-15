@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from '../auth/auth.module';
+import { KafkaModule } from '../kafka/kafka.module';
 import { Transaction } from './entities/transaction.entity';
 import { TransactionsController } from './transactions.controller';
 import { TransactionsService } from './transactions.service';
@@ -13,6 +14,7 @@ import { TransactionsService } from './transactions.service';
     TypeOrmModule.forFeature([Transaction]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     ConfigModule,
+    KafkaModule,
   ],
   controllers: [TransactionsController],
   providers: [TransactionsService],

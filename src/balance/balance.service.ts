@@ -15,14 +15,13 @@ export class BalanceService {
     date: string,
   ): Promise<IConsolidateBalance> {
     try {
-      console.log('accountId', accountId);
-      console.log('Data formatada', date);
-      const balance = await this.consolidateBalanceModel.findOne({
-        accountId,
-        date,
-      });
-
-      console.log('Balanço', balance);
+      const balance = await this.consolidateBalanceModel.findOne(
+        {
+          accountId,
+          date,
+        },
+        { _id: 0, __v: 0 },
+      );
 
       return balance;
     } catch (error) {

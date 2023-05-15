@@ -26,7 +26,6 @@ export class TransactionsService {
       await this.kafkaService.newTransaction(savedTransaction);
       return savedTransaction;
     } catch (error) {
-      console.log(error);
       throw new UnprocessableEntityException('Transação não concluída.');
     }
   }

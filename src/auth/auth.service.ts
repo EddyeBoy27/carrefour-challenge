@@ -17,7 +17,7 @@ export class AuthService {
     if (user.email === email && passValid) {
       return user;
     }
-    return user;
+    return null;
   }
 
   async login(user: User): Promise<any> {

@@ -11,7 +11,7 @@ Seja bem vindo ao repositório do Projeto de <b>Fluxo de Caixa</b> para o desafi
 
 O objetivo desta aplicação é realizar o controle de lançamentos de crédito e débito de um comércio como também as informações de saldo consolidado dos mesmos.
 
-- Esta aplicação segue um padrão de microserviço utilizando o framework NestJs, Health Check e Messageria com Kafka.
+- Esta aplicação segue um padrão de microserviço utilizando o framework NestJs e Messageria com Kafka.
 
 - Decorators, Strategies e Guards como <b>Design Patterns</b>.
 
@@ -19,15 +19,10 @@ O objetivo desta aplicação é realizar o controle de lançamentos de crédito 
 
 - Testes Unitários
 
-- Documentação da API utilizando Swagger
-
 - Autenticação via token JWT
-
-- Registro de Logs com Winston
 
 Outras bibliotecas utilizadas:
 
-- Vault
 - Helmet
 - Bcrypt
 
@@ -36,13 +31,23 @@ Banco de dados:
 - PostgreSQL
 - MongoDB
 
-## Installation
+---
+
+# Para iniciar o projeto é necessário obter o <strong>Docker</strong> na sua máquina, e para testá-lo é necessário o Postman
+
+- ### Faça o download do Docker no site oficial <a src="https://www.docker.com/get-started/">Docker</a>
+
+- ### Faça o download do Postman no site oficial <a src="https://www.postman.com/downloads/">Postman</a>
+
+## Instalação
+
+### Toda a instalação de bibliotecas, node, banco de dados, etc, será orquestrado pelo docker, basta utilizar o terminal ou shell e navegar até a pasta do repositório clonado do projeto e produzir o seguinte comando:
 
 ```bash
-$ npm install
+$ docker-compose up --build
 ```
 
-## Running the app
+## Para te
 
 ```bash
 # development

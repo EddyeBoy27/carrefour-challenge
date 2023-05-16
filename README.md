@@ -47,6 +47,16 @@ Banco de dados:
 
 ---
 
+# Organização via Trello
+
+---
+
+### Foi utilizado a ferramenta Trello para planejamento e organização do desenvolvimento
+
+- <a href="https://trello.com/b/hDO2Pc07/carrefour-challenge" target="_blank">Trello</a>
+
+---
+
 # Instalação
 
 ### Toda a instalação de bibliotecas, node, banco de dados, etc, será orquestrado pelo docker, basta utilizar o terminal ou shell e navegar até a pasta do repositório clonado do projeto e produzir o seguinte comando:

@@ -59,6 +59,8 @@ Banco de dados:
 
 # Instalação
 
+### Definir um arquivo .env (Há um arquivo .env.example que já possui as infos de teste para o projeto apenas o renomeie para .env)
+
 ### Toda a instalação de bibliotecas, node, banco de dados, etc, será orquestrado pelo docker, basta utilizar o terminal ou shell e navegar até a pasta do repositório clonado do projeto e produzir o seguinte comando:
 
 ```bash
